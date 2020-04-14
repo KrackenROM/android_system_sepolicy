@@ -1635,6 +1635,7 @@ $(HOST_OUT_EXECUTABLES)/build_sepolicy $(base_plat_pub_policy.conf) $(reqd_polic
 	$(hide) $(HOST_OUT_EXECUTABLES)/build_sepolicy -a $(HOST_OUT_EXECUTABLES) filter_out \
 		-f $(PRIVATE_REQD_MASK) -t $@
 
+ifneq ($(TARGET_DISABLES_TREBLE_SEPOLICY_TESTS),true)
 ifeq ($(PRODUCT_SEPOLICY_SPLIT),true)
 # Tests for Treble compatibility of current platform policy and vendor policy of
 # given release version.
@@ -1656,6 +1657,7 @@ version_under_treble_tests := 28.0
 include $(LOCAL_PATH)/compat.mk
 version_under_treble_tests := 29.0
 include $(LOCAL_PATH)/compat.mk
+endif
 
 base_plat_policy.conf :=
 base_plat_pub_policy.conf :=
